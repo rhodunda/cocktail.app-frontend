@@ -4,12 +4,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script defer src="modal.js"></script>
   <script defer src="index.js"></script>
-  <title>Cocktail App</title>
+  <script defer src="fetchAndDisplayCocktails.js"></script>
+  <script defer src="createNewCocktail.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Lato&display=swap" rel="stylesheet">
+  <title>cocktail Picker</title>
 </head>
 
 <body>
-
+  <main>
+    <aside>
+      <h1>Cocktail Picker</h1>
+      <h2>cocktails</h2>
+      <ul id="cocktail-container" class="side-list">
+        <!-- Add Bakes Here -->
+      </ul>
+      <h2>Actions</h2>
+      <ul id="actions-container" class="side-list">
+        <li class="item" id="make-cocktail-button" data-action="new">
+          Make New cocktail
+        </li>
+        <li class="item" id="favorite-cocktail-button" data-action="favorite">
+          Favorites
+        </li>
+        <li class="item" id="login">
+          login
+        </li>
+        <li class="item" id="logout">
+          logout
+        </li>
+      </ul>
+    </aside>
+    <section>
+      <div id="detail">
+      </div>
+    </section>
+  </main>
+  <div id="modal" style="display: none;" data-action="close">
+    <form id="new-cocktail-form">
+      <h1>Create New Cocktail</h1>
+      <label for="name">Name</label>
+      <input type="text" name="name">
+      <label for="image_url">Image URL</label>
+      <input type="text" name="image_url">
+      <label for="ingredients">Ingredients</label>
+      <textarea name="ingredients" rows="2"></textarea>
+      <input type="submit" value="Create Bake">
+    </form>
+  </div>
 </body>
 
 </html>
