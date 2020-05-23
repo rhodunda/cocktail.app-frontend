@@ -48,6 +48,10 @@
     padding: 0.5rem;
     border-bottom: 1px solid #000;
   }
+  aside #cocktails-selector {
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 1.5rem;  
+  }
   aside .item {
     padding: 0.5rem 1rem;
     cursor: pointer;

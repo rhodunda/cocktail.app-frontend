@@ -1,11 +1,26 @@
 const BASE_URL = 'http://localhost:3000/api/v1';
 const COCKTAILS_LINK = BASE_URL + '/cocktails';
+const COCKTAILS_FIRST_CHAR_ARR = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+  'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-const cocktailsLink = document.querySelector('#cocktails-link');
-cocktailsLink.addEventListener('click', fetchAllCocktails);
+init();
 
-function fetchAllCocktails() {
-  fetch('http://localhost:3000/api/v1/cocktails')
+function init() {
+  const cocktailSelector = document.querySelector('#cocktails-selector');
+
+  COCKTAILS_FIRST_CHAR_ARR.forEach(char => {
+    cocktailAnchor = document.createElement('a');
+    cocktailAnchor.textContent = ` ${char} `;
+    cocktailAnchor.href = 'javascript:';
+    cocktailAnchor.addEventListener('click', () => { fetchCocktails(char) });
+
+    cocktailSelector.appendChild(cocktailAnchor);
+  })
+}
+
+function fetchCocktails(char) {
+  fetch(`http://localhost:3000/api/v1/cocktails?q=${char}`)
     .then(response => response.json())
     .then(cocktails => renderCocktailsTable(cocktails));
 }
@@ -25,10 +40,16 @@ function renderCocktailsTable(cocktails) {
 
   const cocktailsTable = buildCocktailsTable(cocktails);
 
-  container.appendChild(cocktailsTable);
+  if (cocktailsTable) {
+    container.appendChild(cocktailsTable);
+  }
 }
 
 function buildCocktailsTable(cocktails) {
+  if (cocktails.length <= 0) {
+    return;
+  }
+
   const table = document.createElement('table');
   const tHead = document.createElement('thead');
   const tHeadRow = document.createElement('tr');
