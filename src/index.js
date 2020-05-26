@@ -28,7 +28,10 @@ function displayCocktailSelector() {
 }
 
 function fetchCocktails(char) {
-    fetch(`http://localhost:3000/api/v1/cocktails?q=${char}`)
+    fetchObj = {
+        method: 'POST',
+    }
+    fetch(`http://localhost:3000/api/v1/cocktails/search-by-char?q=${char}`, fetchObj)
         .then(response => response.json())
         .then(cocktails => renderCocktailsTable(cocktails));
 }
