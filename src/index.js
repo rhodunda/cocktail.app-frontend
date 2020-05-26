@@ -11,7 +11,32 @@ document.addEventListener("DOMContentLoaded", function () {
 function init() {
     signUp()
     login()
+    setupSearchForm()
     displayCocktailSelector()
+}
+
+function setupSearchForm() {
+    const searchForm = document.querySelector('#cocktails-search-form');
+
+    searchForm.addEventListener('submit', fetchCocktailsByName)
+}
+
+function fetchCocktailsByName(e) {
+    e.preventDefault();
+    searchValue = e.target.querySelector('#search-form-input').value.toLowerCase();
+
+    if (!searchValue)
+        return
+
+    const fetchObj = {
+        method: 'POST'
+    }
+
+    e.target.reset();
+
+    fetch(`http://localhost:3000/api/v1/cocktails/search-by-name?q=${searchValue}`, fetchObj)
+        .then(response => response.json())
+        .then(cocktails => renderCocktailsTable(cocktails));
 }
 
 function displayCocktailSelector() {
@@ -21,14 +46,14 @@ function displayCocktailSelector() {
         cocktailAnchor = document.createElement('a');
         cocktailAnchor.textContent = ` ${char} `;
         cocktailAnchor.href = 'javascript:';
-        cocktailAnchor.addEventListener('click', () => { fetchCocktails(char) });
+        cocktailAnchor.addEventListener('click', () => { fetchCocktailsByChar(char) });
 
         cocktailSelector.appendChild(cocktailAnchor);
     })
 }
 
-function fetchCocktails(char) {
-    fetchObj = {
+function fetchCocktailsByChar(char) {
+    const fetchObj = {
         method: 'POST',
     }
     fetch(`http://localhost:3000/api/v1/cocktails/search-by-char?q=${char}`, fetchObj)
