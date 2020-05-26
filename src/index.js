@@ -93,9 +93,6 @@ function buildCocktailsTable(cocktails) {
     const tHeadName = document.createElement('th');
     tHeadName.innerText = 'Name';
 
-    const tHeadDescription = document.createElement('th');
-    tHeadDescription.innerText = 'Description';
-
     const tHeadIngredients = document.createElement('th');
     tHeadIngredients.innerText = 'Ingredients';
 
@@ -115,18 +112,15 @@ function buildCocktailsTable(cocktails) {
         cocktailImage.src = cocktail.image;
         cocktailImage.classList.add('table-image');
 
-        const tDataDescription = document.createElement('td');
-        tDataDescription.innerText = 'Coming soon!';
-
         const tDataIngredients = document.createElement('td');
         tDataIngredients.appendChild(renderIngredients(cocktail))
 
         tDataImage.appendChild(cocktailImage);
-        tDataRow.append(tDataName, tDataImage, tDataDescription, tDataIngredients);
+        tDataRow.append(tDataName, tDataImage, tDataIngredients);
         tBody.appendChild(tDataRow);
     });
 
-    tHeadRow.append(tHeadName, tHeadImage, tHeadDescription, tHeadIngredients);
+    tHeadRow.append(tHeadName, tHeadImage, tHeadIngredients);
     tHead.appendChild(tHeadRow);
     table.append(tHead, tBody);
 
@@ -134,14 +128,12 @@ function buildCocktailsTable(cocktails) {
 }
 
 function renderIngredients(cocktail) {
-    ingredientTable = document.createElement('table');
+    ingredientList = document.createElement('ul');
     cocktail.ingredients.forEach(ingredient => {
-        ingredientRow = document.createElement('tr');
-        ingredientData = document.createElement('td');
-        ingredientData.innerText = ingredient.name;
-        ingredientRow.appendChild(ingredientData);
-        ingredientTable.appendChild(ingredientRow);
+        ingredientListItem = document.createElement('li');
+        ingredientListItem.innerText = ingredient.name;
+        ingredientList.appendChild(ingredientListItem);
     });
 
-    return ingredientTable;
+    return ingredientList;
 }
