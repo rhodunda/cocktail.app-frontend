@@ -119,7 +119,7 @@ function buildCocktailsTable(cocktails) {
         tDataDescription.innerText = 'Coming soon!';
 
         const tDataIngredients = document.createElement('td');
-        tDataIngredients.innerText = 'Coming soon!'
+        tDataIngredients.appendChild(renderIngredients(cocktail))
 
         tDataImage.appendChild(cocktailImage);
         tDataRow.append(tDataName, tDataImage, tDataDescription, tDataIngredients);
@@ -131,4 +131,17 @@ function buildCocktailsTable(cocktails) {
     table.append(tHead, tBody);
 
     return table;
+}
+
+function renderIngredients(cocktail) {
+    ingredientTable = document.createElement('table');
+    cocktail.ingredients.forEach(ingredient => {
+        ingredientRow = document.createElement('tr');
+        ingredientData = document.createElement('td');
+        ingredientData.innerText = ingredient.name;
+        ingredientRow.appendChild(ingredientData);
+        ingredientTable.appendChild(ingredientRow);
+    });
+
+    return ingredientTable;
 }
