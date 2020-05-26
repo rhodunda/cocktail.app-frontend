@@ -21,8 +21,12 @@
       <h2>Cocktails</h2>
       <div>
         <div id="cocktails-search">
-          <p>Search: </p>
+          <p>Search: </p><br>
           <form id="cocktails-search-form">
+            <select name="search-option" id="search-option">
+              <option value="name">Name</option>
+              <option value="ingredient">Ingredient</option>
+            </select>
             <input id="search-form-input" type="text" name="name">
             <input type="submit" value="Search">
           </form>
