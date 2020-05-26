@@ -12,6 +12,7 @@ function init() {
     signUp()
     login()
     displayCocktailSelector()
+    // newCocktail()
 }
 
 function displayCocktailSelector() {

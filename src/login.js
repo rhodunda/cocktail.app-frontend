@@ -1,5 +1,6 @@
 function login() {
     loginListener()
+    logout()
 }
 
 function loginListener() {
@@ -39,25 +40,25 @@ function creatingLogin() {
 
     let loginSubmit = document.createElement('input')
     loginSubmit.type = "submit"
-    loginSubmit.value = 'sign up'
-    loginSubmit.innerText = "Submit"
+    loginSubmit.value = 'login'
+    loginSubmit.innerText = "Login"
     loginForm.appendChild(loginSubmit)
 
 
     loginForm.addEventListener('submit', function (e) {
+        e.preventDefault()
 
         let loginInfo = {
             email: e.target.email.value,
             password: e.target.password.value
         }
 
-
         loginFetch(loginInfo)
     })
 }
 
 function loginFetch(loginInfo) {
-    fetch('http://localhost:3000/api/v1/users/login', {
+    fetch('http://localhost:3000/api/v1/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -67,9 +68,35 @@ function loginFetch(loginInfo) {
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
-            debugger
-            sessionStorage.setItem("user", "testing")
+            sessionStorage.setItem("user_id", `${data.id}`)
         })
+}
+
+
+function logout() {
+    let logoutBtn = document.querySelector("#logout")
+    logoutBtn.addEventListener("click", function () {
+        createLogOut()
+    })
+}
+
+function createLogOut() {
+    let detailsDiv = document.querySelector("#detail")
+    detailsDiv.innerHTML = ''
+
+    let logoutMessage = document.createElement("h2")
+    logoutMessage.innerText = 'See you next time!!'
+    detailsDiv.appendChild(logoutMessage)
+
+    let finalLogoutBtn = document.createElement('button')
+    finalLogoutBtn.style.color = 'red'
+    finalLogoutBtn.innerText = 'Logout'
+    detailsDiv.appendChild(finalLogoutBtn)
+
+    finalLogoutBtn.addEventListener('click', function () {
+        sessionStorage.removeItem('user_id')
+        window.alert("Logout")
+    })
 }
 
 
