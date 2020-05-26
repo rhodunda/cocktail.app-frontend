@@ -18,10 +18,10 @@ function init() {
 function setupSearchForm() {
     const searchForm = document.querySelector('#cocktails-search-form');
 
-    searchForm.addEventListener('submit', fetchCocktailsByName)
+    searchForm.addEventListener('submit', fetchCocktails)
 }
 
-function fetchCocktailsByName(e) {
+function fetchCocktails(e) {
     e.preventDefault();
     searchValue = e.target.querySelector('#search-form-input').value.toLowerCase();
 
@@ -32,11 +32,16 @@ function fetchCocktailsByName(e) {
         method: 'POST'
     }
 
-    e.target.reset();
+    if (e.target.querySelector('#search-option').value == 'ingredient')
+        searchUrl = 'http://localhost:3000/api/v1/cocktails/search-by-ingredient';
+    else
+        searchUrl = 'http://localhost:3000/api/v1/cocktails/search-by-name'
 
-    fetch(`http://localhost:3000/api/v1/cocktails/search-by-name?q=${searchValue}`, fetchObj)
+    fetch(`${searchUrl}?q=${searchValue}`, fetchObj)
         .then(response => response.json())
         .then(cocktails => renderCocktailsTable(cocktails));
+
+    e.target.reset();
 }
 
 function displayCocktailSelector() {
@@ -93,9 +98,6 @@ function buildCocktailsTable(cocktails) {
     const tHeadName = document.createElement('th');
     tHeadName.innerText = 'Name';
 
-    const tHeadIngredients = document.createElement('th');
-    tHeadIngredients.innerText = 'Ingredients';
-
     const tHeadImage = document.createElement('th');
     tHeadImage.innerText = 'Image';
 
@@ -112,15 +114,12 @@ function buildCocktailsTable(cocktails) {
         cocktailImage.src = cocktail.image;
         cocktailImage.classList.add('table-image');
 
-        const tDataIngredients = document.createElement('td');
-        tDataIngredients.appendChild(renderIngredients(cocktail))
-
         tDataImage.appendChild(cocktailImage);
-        tDataRow.append(tDataName, tDataImage, tDataIngredients);
+        tDataRow.append(tDataName, tDataImage);
         tBody.appendChild(tDataRow);
     });
 
-    tHeadRow.append(tHeadName, tHeadImage, tHeadIngredients);
+    tHeadRow.append(tHeadName, tHeadImage);
     tHead.appendChild(tHeadRow);
     table.append(tHead, tBody);
 
