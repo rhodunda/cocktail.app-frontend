@@ -49,15 +49,12 @@ function createSignUpForm() {
             password: e.target.password.value
         }
 
-
         creatingUser(newUser)
         signUpForm.reset()
-
     })
 }
 
 function creatingUser(newUser) {
-
     fetch('http://localhost:3000/api/v1/users', {
         method: "POST",
         headers: {
@@ -66,6 +63,8 @@ function creatingUser(newUser) {
         body: JSON.stringify(newUser)
     })
         .then(resp => resp.json())
-        .then(console.log(resp))
+        .then(data => {
+            sessionStorage.setItem("user_id", `${data.id}`)
+        })
 }
 

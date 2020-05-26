@@ -13,6 +13,7 @@ function init() {
     login()
     setupSearchForm()
     displayCocktailSelector()
+    // newCocktail()
 }
 
 function setupSearchForm() {
