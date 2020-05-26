@@ -43,8 +43,33 @@ function creatingLogin() {
     loginSubmit.innerText = "Submit"
     loginForm.appendChild(loginSubmit)
 
+
     loginForm.addEventListener('submit', function (e) {
 
+        let loginInfo = {
+            email: e.target.email.value,
+            password: e.target.password.value
+        }
+
+
+        loginFetch(loginInfo)
     })
 }
+
+function loginFetch(loginInfo) {
+    fetch('http://localhost:3000/api/v1/users/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginInfo)
+    })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            debugger
+            sessionStorage.setItem("user", "testing")
+        })
+}
+
 

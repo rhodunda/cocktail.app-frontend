@@ -14,10 +14,6 @@ function init() {
     displayCocktailSelector()
 }
 
-
-
-
-
 function displayCocktailSelector() {
     const cocktailSelector = document.querySelector('#cocktails-selector');
 
