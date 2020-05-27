@@ -154,3 +154,13 @@
   #cocktails-search-form input {
     border: thin solid black;
   }
+
+  .cocktail-image {
+    max-width: 20vw;
+    height: auto;
+  }
+
+  .is-favorite {
+    background-color: green;
+    color: white;
+  }

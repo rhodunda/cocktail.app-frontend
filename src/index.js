@@ -111,7 +111,7 @@ function buildCocktailsTable(cocktails) {
 
         const tDataAnchor = document.createElement('a')
         tDataAnchor.innerText = cocktail.name
-        tDataAnchor.href = "#"
+        tDataAnchor.href = 'javascript:'
 
         tDataAnchor.addEventListener("click", function (e) {
             displayCocktailShowPage(e, cocktail)
@@ -144,15 +144,4 @@ function renderIngredients(cocktail) {
     });
 
     return ingredientList;
-}
-
-function displayCocktailShowPage(e, cocktail) {
-    const container = document.querySelector('#detail');
-    clearContainerContents(container);
-
-    // Name
-    // Picture
-    // Ingredients
-    // Favorite Button --- post fetch to fetches -> include cocktail information
-    // Review section --- post review to reviews -> include cocktail information. After post, create new review section
 }
