@@ -108,7 +108,24 @@ function buildCocktailsTable(cocktails) {
         const tDataRow = document.createElement('tr');
 
         const tDataName = document.createElement('td');
-        tDataName.innerText = cocktail.name;
+        
+        const tDataAnchor = document.createElement('a')
+        tDataAnchor.innerText = cocktail.name
+
+        tDataAnchor.href = "#"
+
+        tDataAnchor.addEventListener("click", function (e) {
+            console.log(e)
+        })
+
+        tDataName.appendChild(tDataAnchor)
+        // let cocktailButton = document.createElement("BUTTON")
+        // cocktailButton.innerText = "Select Cocktail"
+        // cocktailButton.setAttribute("id", "selector-button");
+        // cocktailButton.addEventListener("click", function (e) {
+        //     console.log(e)
+        // })
+        // tDataName.appendChild(cocktailButton)
 
         const tDataImage = document.createElement('td');
         cocktailImage = document.createElement('img');
@@ -137,15 +154,3 @@ function renderIngredients(cocktail) {
 
     return ingredientList;
 }
-
-function getFavorites() {
-    fetch('http://localhost:3000/api/v1/favorites')
-        .then(response => response.json())
-        .then(data => {
-            debugger;
-            console.log(data);
-        })
-}
-
-const favButton = document.querySelector('#favorite-cocktail-button');
-favButton.addEventListener('click', getFavorites);
