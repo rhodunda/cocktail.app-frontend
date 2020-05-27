@@ -105,33 +105,25 @@ function buildCocktailsTable(cocktails) {
     const tBody = document.createElement('tbody');
 
     cocktails.forEach(cocktail => {
+        debugger;
         const tDataRow = document.createElement('tr');
 
         const tDataName = document.createElement('td');
-        
+
         const tDataAnchor = document.createElement('a')
         tDataAnchor.innerText = cocktail.name
-
         tDataAnchor.href = "#"
 
         tDataAnchor.addEventListener("click", function (e) {
-            console.log(e)
+            displayCocktailShowPage(e, cocktail)
         })
-
-        tDataName.appendChild(tDataAnchor)
-        // let cocktailButton = document.createElement("BUTTON")
-        // cocktailButton.innerText = "Select Cocktail"
-        // cocktailButton.setAttribute("id", "selector-button");
-        // cocktailButton.addEventListener("click", function (e) {
-        //     console.log(e)
-        // })
-        // tDataName.appendChild(cocktailButton)
 
         const tDataImage = document.createElement('td');
         cocktailImage = document.createElement('img');
         cocktailImage.src = cocktail.image;
         cocktailImage.classList.add('table-image');
 
+        tDataName.appendChild(tDataAnchor)
         tDataImage.appendChild(cocktailImage);
         tDataRow.append(tDataName, tDataImage);
         tBody.appendChild(tDataRow);
@@ -153,4 +145,15 @@ function renderIngredients(cocktail) {
     });
 
     return ingredientList;
+}
+
+function displayCocktailShowPage(e, cocktail) {
+    const container = document.querySelector('#detail');
+    clearContainerContents(container);
+
+    // Name
+    // Picture
+    // Ingredients
+    // Favorite Button --- post fetch to fetches -> include cocktail information
+    // Review section --- post review to reviews -> include cocktail information. After post, create new review section
 }
