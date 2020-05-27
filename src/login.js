@@ -66,7 +66,7 @@ function loginFetch(loginInfo) {
     .then((resp) => resp.json())
     .then((data) => {
       if (data.errors) data.errors.forEach((error) => alert(error));
-      else sessionStorage.setItem("user_id", `${data.id}`);
+      else localStorage.setItem("user_id", `${data.id}`);
     });
 }
 
@@ -91,7 +91,7 @@ function createLogOut() {
   detailsDiv.appendChild(finalLogoutBtn);
 
   finalLogoutBtn.addEventListener("click", function () {
-    sessionStorage.removeItem("user_id");
+    localStorage.removeItem("user_id");
     window.alert("Logout");
   });
 }

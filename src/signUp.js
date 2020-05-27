@@ -1,4 +1,3 @@
-
 function signUp() {
   signUpBtnListener();
 }
@@ -64,7 +63,7 @@ function creatingUser(newUser) {
   })
     .then((resp) => resp.json())
     .then((data) => {
-      sessionStorage.setItem("user_id", `${data.id}`);
+      localStorage.setItem("user_id", `${data.id}`);
       window.alert("Welcome to Cocktail Picker");
     });
 }
