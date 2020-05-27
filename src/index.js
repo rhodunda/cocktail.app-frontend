@@ -137,3 +137,15 @@ function renderIngredients(cocktail) {
 
     return ingredientList;
 }
+
+function getFavorites() {
+    fetch('http://localhost:3000/api/v1/favorites')
+        .then(response => response.json())
+        .then(data => {
+            debugger;
+            console.log(data);
+        })
+}
+
+const favButton = document.querySelector('#favorite-cocktail-button');
+favButton.addEventListener('click', getFavorites);
