@@ -36,13 +36,5 @@ function favoriteCocktail(e, cocktail) {
 
   fetch(`${BASE_URL}/favorites`, fetchObj)
     .then(response => response.json())
-    .then(favorite => updateFavoriteButton(e, favorite))
-}
-
-function updateFavoriteButton(e, favorite) {
-  if (favorite) {
-    e.target.classList.add('is-favorite');
-  } else {
-    e.target.classList.remove('is-favorite');
-  }
+    .then(cocktail => displayCocktailShowPage(cocktail))
 }

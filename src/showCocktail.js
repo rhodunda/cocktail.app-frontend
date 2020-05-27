@@ -1,4 +1,4 @@
-function displayCocktailShowPage(e, cocktail) {
+function displayCocktailShowPage(cocktail) {
   const container = document.querySelector('#detail');
   clearContainerContents(container);
 
@@ -24,12 +24,6 @@ function displayCocktailShowPage(e, cocktail) {
     ingredientList.appendChild(ingredientListItem);
   }
 
-  // cocktail.ingredients.forEach(ingredient => {
-  //   const ingredientListItem = document.createElement('li');
-  //   ingredientListItem.innerText = ingredient.name;
-  //   ingredientList.appendChild(ingredientListItem);
-  // });
-
   // Favorite Button --- post fetch to fetches -> include cocktail information
   const favoriteButton = document.createElement('button');
   favoriteButton.innerText = 'Favorite';
@@ -40,16 +34,36 @@ function displayCocktailShowPage(e, cocktail) {
   const reviewsHeader = document.createElement('h2');
   reviewsHeader.innerText = 'Reviews';
 
+  const reviewsContainer = document.createElement('div');
+  reviewsContainer.id = 'reviews-container';
+
+  renderReviews(reviewsContainer, cocktail);
+
   const reviewForm = document.createElement('form');
 
+  const reviewRatingSpan = document.createElement('span');
+  reviewRatingSpan.innerText = 'Rating: ';
+
+  const reviewRatingSelect = document.createElement('select');
+  reviewRatingSelect.name = 'reviewRating';
+  for (let i = 0; i <= 10; i++) {
+    const reviewRatingOption = document.createElement('option');
+    reviewRatingOption.value = i;
+    reviewRatingOption.innerText = i;
+    reviewRatingSelect.appendChild(reviewRatingOption);
+  }
+  reviewRatingSpan.appendChild(reviewRatingSelect);
+
   const reviewTextArea = document.createElement('textarea');
+  reviewTextArea.name = 'reviewContent';
   reviewTextArea.placeholder = 'Write Review Here';
 
   const reviewSubmitButton = document.createElement('input');
   reviewSubmitButton.type = 'submit';
 
-  reviewForm.append(reviewTextArea, reviewSubmitButton);
+  reviewForm.append(reviewRatingSpan, reviewTextArea, reviewSubmitButton);
+  reviewForm.addEventListener('submit', (e) => saveReview(e, cocktail));
 
   // Append children to page
-  container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientList, favoriteButton, reviewsHeader, reviewForm);
+  container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientList, favoriteButton, reviewsHeader, reviewsContainer, reviewForm);
 }
