@@ -1,5 +1,7 @@
 function newCocktail() {
-  let newCocktailForm = document.querySelector("#new-cocktail-form");
+  const newCocktailForm = document.querySelector("#new-cocktail-form");
+  const modal = document.querySelector('#modal');
+
   newCocktailForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -10,6 +12,8 @@ function newCocktail() {
 
     newCocktailFetch(formSubmit);
     newCocktailForm.reset();
+
+    modal.style.display = "none"
   });
 }
 
@@ -24,6 +28,10 @@ function newCocktailFetch(formSubmit) {
 
   fetch("http://localhost:3000/api/v1/cocktails", fetchObj)
     .then((resp) => resp.json())
-    .then((resp) => console.log(resp));
+    .then(cocktail => createLoadShowPage(cocktail));
+}
+
+function createLoadShowPage(cocktail) {
+  displayCocktailShowPage(cocktail)
 }
 
