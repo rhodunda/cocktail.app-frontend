@@ -114,7 +114,7 @@ function buildCocktailsTable(cocktails) {
         tDataAnchor.href = 'javascript:'
 
         tDataAnchor.addEventListener("click", function (e) {
-            displayCocktailShowPage(e, cocktail)
+            displayCocktailShowPage(cocktail)
         })
 
         const tDataImage = document.createElement('td');
