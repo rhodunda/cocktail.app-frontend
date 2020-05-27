@@ -1,3 +1,4 @@
+
 function newCocktail() {
   let newCocktailForm = document.querySelector("#new-cocktail-form");
   newCocktailForm.addEventListener("submit", function (e) {
@@ -24,3 +25,4 @@ function newCocktailFetch(formSubmit) {
     .then((resp) => resp.json())
     .then((resp) => console.log(resp));
 }
+

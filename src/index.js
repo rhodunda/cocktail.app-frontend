@@ -44,30 +44,51 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function init() {
-  signUp();
-  login();
-  setupSearchForm();
-  displayCocktailSelector();
-  newCocktail();
+
+    signUp()
+    login()
+    setupSearchForm()
+    displayCocktailSelector()
+    newCocktail()
 }
 
 function setupSearchForm() {
-  const searchForm = document.querySelector("#cocktails-search-form");
+    const searchForm = document.querySelector('#cocktails-search-form');
 
-  searchForm.addEventListener("submit", fetchCocktails);
+    searchForm.addEventListener('submit', fetchCocktails)
 }
 
 function fetchCocktails(e) {
-  e.preventDefault();
-  searchValue = e.target
-    .querySelector("#search-form-input")
-    .value.toLowerCase();
+    e.preventDefault();
+    searchValue = e.target.querySelector('#search-form-input').value.toLowerCase();
 
-  if (!searchValue) return;
+    if (!searchValue)
+        return
 
-  const fetchObj = {
-    method: "POST",
-  };
+    const fetchObj = {
+        method: 'POST'
+    }
+
+    if (e.target.querySelector('#search-option').value == 'ingredient')
+        searchUrl = 'http://localhost:3000/api/v1/cocktails/search-by-ingredient';
+    else
+        searchUrl = 'http://localhost:3000/api/v1/cocktails/search-by-name'
+
+    fetch(`${searchUrl}?q=${searchValue}`, fetchObj)
+        .then(response => response.json())
+        .then(cocktails => renderCocktailsTable(cocktails));
+
+    e.target.reset();
+}
+
+function displayCocktailSelector() {
+    const cocktailSelector = document.querySelector('#cocktails-selector');
+
+    COCKTAILS_FIRST_CHAR_ARR.forEach(char => {
+        cocktailAnchor = document.createElement('a');
+        cocktailAnchor.textContent = ` ${char} `;
+        cocktailAnchor.href = 'javascript:';
+        cocktailAnchor.addEventListener('click', () => { fetchCocktailsByChar(char) });
 
   if (e.target.querySelector("#search-option").value == "ingredient")
     searchUrl = "http://localhost:3000/api/v1/cocktails/search-by-ingredient";
@@ -147,33 +168,57 @@ function buildCocktailsTable(cocktails) {
   cocktails.forEach((cocktail) => {
     const tDataRow = document.createElement("tr");
 
-    const tDataName = document.createElement("td");
-    tDataName.innerText = cocktail.name;
 
-    const tDataImage = document.createElement("td");
-    cocktailImage = document.createElement("img");
-    cocktailImage.src = cocktail.image;
-    cocktailImage.classList.add("table-image");
+    cocktails.forEach(cocktail => {
+        debugger;
+        const tDataRow = document.createElement('tr');
 
-    tDataImage.appendChild(cocktailImage);
-    tDataRow.append(tDataName, tDataImage);
-    tBody.appendChild(tDataRow);
-  });
+        const tDataName = document.createElement('td');
 
-  tHeadRow.append(tHeadName, tHeadImage);
-  tHead.appendChild(tHeadRow);
-  table.append(tHead, tBody);
+        const tDataAnchor = document.createElement('a')
+        tDataAnchor.innerText = cocktail.name
+        tDataAnchor.href = "#"
 
-  return table;
+        tDataAnchor.addEventListener("click", function (e) {
+            displayCocktailShowPage(e, cocktail)
+        })
+  
+        const tDataImage = document.createElement("td");
+        cocktailImage = document.createElement("img");
+        cocktailImage.src = cocktail.image;
+        cocktailImage.classList.add("table-image");
+      
+        tDataName.appendChild(tDataAnchor)
+        tDataImage.appendChild(cocktailImage);
+        tDataRow.append(tDataName, tDataImage);
+        tBody.appendChild(tDataRow);
+    });
+
+    tHeadRow.append(tHeadName, tHeadImage);
+    tHead.appendChild(tHeadRow);
+    table.append(tHead, tBody);
+
+    return table;
 }
 
 function renderIngredients(cocktail) {
-  ingredientList = document.createElement("ul");
-  cocktail.ingredients.forEach((ingredient) => {
-    ingredientListItem = document.createElement("li");
-    ingredientListItem.innerText = ingredient.name;
-    ingredientList.appendChild(ingredientListItem);
-  });
+    ingredientList = document.createElement('ul');
+    cocktail.ingredients.forEach(ingredient => {
+        ingredientListItem = document.createElement('li');
+        ingredientListItem.innerText = ingredient.name;
+        ingredientList.appendChild(ingredientListItem);
+    });
 
-  return ingredientList;
+    return ingredientList;
+}
+
+function displayCocktailShowPage(e, cocktail) {
+    const container = document.querySelector('#detail');
+    clearContainerContents(container);
+
+    // Name
+    // Picture
+    // Ingredients
+    // Favorite Button --- post fetch to fetches -> include cocktail information
+    // Review section --- post review to reviews -> include cocktail information. After post, create new review section
 }

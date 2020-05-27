@@ -1,3 +1,4 @@
+
 function signUp() {
   signUpBtnListener();
 }
