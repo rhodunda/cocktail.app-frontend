@@ -26,6 +26,7 @@ function displayCocktailShowPage(cocktail) {
 
   // Favorite Button --- post fetch to fetches -> include cocktail information
   const favoriteButton = document.createElement('button');
+  favoriteButton.id = 'favorite-button';
   favoriteButton.innerText = 'Favorite';
   favoriteButton.addEventListener('click', (e) => favoriteCocktail(e, cocktail))
   colorIfFavorite(favoriteButton, cocktail);
@@ -40,6 +41,7 @@ function displayCocktailShowPage(cocktail) {
   renderReviews(reviewsContainer, cocktail);
 
   const reviewForm = document.createElement('form');
+  reviewForm.id = 'review-form';
 
   const reviewRatingSpan = document.createElement('span');
   reviewRatingSpan.innerText = 'Rating: ';
@@ -66,4 +68,16 @@ function displayCocktailShowPage(cocktail) {
 
   // Append children to page
   container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientList, favoriteButton, reviewsHeader, reviewsContainer, reviewForm);
+}
+
+function updateCocktailEventListeners(cocktail) {
+  const favoriteButton = document.querySelector('#favorite-button');
+  const favoriteButtonClone = favoriteButton.cloneNode(true);
+  favoriteButtonClone.addEventListener('click', (e) => favoriteCocktail(e, cocktail));
+  favoriteButton.parentNode.replaceChild(favoriteButtonClone, favoriteButton);
+
+  const reviewForm = document.querySelector('#review-form');
+  const reviewFormClone = reviewForm.cloneNode(true);
+  reviewFormClone.addEventListener('submit', (e) => saveReview(e, cocktail));
+  reviewForm.parentNode.replaceChild(reviewFormClone, reviewForm);
 }

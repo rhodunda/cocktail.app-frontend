@@ -36,5 +36,9 @@ function favoriteCocktail(e, cocktail) {
 
   fetch(`${BASE_URL}/favorites`, fetchObj)
     .then(response => response.json())
-    .then(cocktail => displayCocktailShowPage(cocktail))
+    .then(cocktail => {
+      updateCocktailEventListeners(cocktail);
+      const favoriteButton = document.querySelector('#favorite-button')
+      colorIfFavorite(favoriteButton, cocktail);
+    })
 }
