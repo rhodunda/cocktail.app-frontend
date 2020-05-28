@@ -186,3 +186,48 @@ th {
 .card:hover {
   color: blue;
 }
+
+.show-cocktail-main-div {
+  text-align: center;
+  background-color: rgb(255, 255, 220);
+  border-radius: 15px;
+}
+
+.cocktail-image {
+  border-radius: 20%;
+  margin-bottom: 15px;
+}
+.ingredientsContainer {
+  text-align: center;
+  border-bottom: solid;
+  border-color: #fae8b9;
+  border-width: 20px;
+  margin-bottom: 35px;
+}
+
+#cocktail-instructions {
+  margin-bottom: 50px;
+}
+
+#favorite-button {
+  background-color: rgb(255, 215, 0);
+  color: black;
+  font-size: 20px;
+  border-radius: 15px;
+  border: 2px black;
+  margin-bottom: 35px;
+  transition-duration: 0.4s;
+}
+
+#favorite-button:hover {
+  background-color: #66ccff;
+  color: black;
+}
+
+.review-headers {
+  border-top: solid;
+  border-color: #fae8b9;
+  border-width: 20px;
+  margin-bottom: 35px;
+  margin-top: 50px;
+}
