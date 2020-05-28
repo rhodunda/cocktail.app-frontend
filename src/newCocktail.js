@@ -8,6 +8,7 @@ function newCocktail() {
     formSubmit = {
       name: e.target.name.value,
       image: e.target.image.value,
+      instructions: e.target.instructions.value,
       creator_id: localStorage.getItem('user_id')
     };
 
@@ -33,6 +34,6 @@ function newCocktailFetch(formSubmit) {
 }
 
 function createLoadShowPage(cocktail) {
-  displayCocktailShowPage(cocktail)
+  getShowInformation(cocktail)
 }
 
