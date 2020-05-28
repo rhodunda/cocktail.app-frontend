@@ -164,3 +164,8 @@
     background-color: green;
     color: white;
   }
+
+  .review-delete {
+    background-color: red;
+    color: white;
+  }
