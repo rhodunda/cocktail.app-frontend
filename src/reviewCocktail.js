@@ -38,7 +38,7 @@ function renderReview(container, review) {
 
       if (parseInt(localStorage.getItem('user_id')) === user.id) {
         const deleteButton = document.createElement('button');
-        deleteButton.classList.add('review-delete');
+        deleteButton.classList.add('delete-button');
         deleteButton.innerText = 'Delete Review';
         deleteButton.addEventListener('click', (e) => deleteReview(e, review))
 
@@ -95,5 +95,5 @@ function deleteReview(e, review) {
 
   fetch(`${BASE_URL}/reviews/${review.id}`, fetchObj)
     .then(response => response.json())
-    .then(message => console.log(message));
+    .then(confirmation => confirmation ? e.target.parentElement.remove() : alert('Failed to delete review'));
 }
