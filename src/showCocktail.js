@@ -20,12 +20,13 @@ function displayCocktailShowPage(cocktail) {
 
   // Name
   const cocktailHeader = document.createElement('h1');
+  cocktailHeader.id = 'cocktail-header'
   cocktailHeader.innerText = cocktail.name
 
   // Picture
   const cocktailImage = document.createElement('img');
   cocktailImage.src = cocktail.image;
-  cocktailImage.classList.add('cocktail-image')
+  cocktailImage.classList.add('cocktail-image');
 
   // Ingredients
   const ingredientsHeader = document.createElement('h2');
@@ -42,6 +43,7 @@ function displayCocktailShowPage(cocktail) {
   instructionsHeader.innerText = 'Instructions';
 
   const instructionsParagraph = document.createElement('p');
+  instructionsParagraph.id = 'cocktail-instructions'
   instructionsParagraph.innerText = cocktail.instructions;
 
 
@@ -90,6 +92,19 @@ function displayCocktailShowPage(cocktail) {
   // Append children to page
   container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientsList, instructionsHeader,
     instructionsParagraph, favoriteButton, reviewsHeader, reviewsContainer, reviewForm);
+
+  // Update Cocktail Button
+  if (parseInt(localStorage.getItem('user_id')) === cocktail.creator_id) {
+    const updateCocktailButton = document.createElement('button');
+    updateCocktailButton.innerText = 'Update Cocktail';
+    updateCocktailButton.addEventListener('click', () => updateCocktail(cocktail));
+
+    setupUpdateCocktailForm(cocktail);
+
+    container.insertBefore(document.createElement('br'), ingredientsHeader);
+    container.insertBefore(updateCocktailButton, ingredientsHeader);
+  }
+
 }
 
 function updateCocktailEventListeners(cocktail) {
