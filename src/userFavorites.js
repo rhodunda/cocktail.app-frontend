@@ -1,0 +1,67 @@
+function displayUserFavorites() {
+  favoritesListener();
+}
+
+function favoritesListener() {
+  let favoriteBtn = document.querySelector("#favorite-cocktail-button");
+  favoriteBtn.addEventListener("click", function () {
+    let detailsDiv = document.querySelector("#detail");
+    detailsDiv.innerHTML = "";
+
+    console.log("click");
+    userFavoritesFetch();
+  });
+}
+
+function userFavoritesFetch() {
+  fetch(`http://localhost:3000/api/v1/user/favorites`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(parseInt(localStorage.getItem("user_id"))),
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log(data);
+      createCards(data);
+    });
+}
+
+function createCards(data) {
+  let detailsDiv = document.querySelector("#detail");
+
+  data.forEach((cocktail) => {
+    let cardRow = document.createElement("div");
+    cardRow.className = "row";
+    detailsDiv.appendChild(cardRow);
+
+    let cardCol = document.createElement("div");
+    cardCol.className = "col-sm-6";
+    cardRow.appendChild(cardCol);
+
+    let cardDiv = document.createElement("div");
+    cardDiv.className = "card";
+    cardDiv.style = "width: 18rem;";
+    cardCol.appendChild(cardDiv);
+
+    let userFavoritesImg = document.createElement("img");
+    userFavoritesImg.src = cocktail.image;
+    userFavoritesImg.className = "card-img-top";
+    cardDiv.appendChild(userFavoritesImg);
+
+    let userFavoritesDiv = document.createElement("div");
+    userFavoritesDiv.className = "card-body";
+    cardDiv.appendChild(userFavoritesDiv);
+
+    let userFavoritesH5 = document.createElement("h5");
+    userFavoritesH5.innerText = cocktail.name;
+    userFavoritesH5.className = "card-title";
+    userFavoritesDiv.appendChild(userFavoritesH5);
+
+    let userFavoritesP = document.createElement("p");
+    userFavoritesP.innerText = "Ingredients Coming Soon!";
+    userFavoritesP.className = "card-text";
+    userFavoritesDiv.appendChild(userFavoritesP);
+  });
+}
