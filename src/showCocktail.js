@@ -37,6 +37,14 @@ function displayCocktailShowPage(cocktail) {
 
   setupNewIngredientForm(cocktail);
 
+  // Instructions
+  const instructionsHeader = document.createElement('h2');
+  instructionsHeader.innerText = 'Instructions';
+
+  const instructionsParagraph = document.createElement('p');
+  instructionsParagraph.innerText = cocktail.instructions;
+
+
   // Favorite Button --- post fetch to fetches -> include cocktail information
   const favoriteButton = document.createElement('button');
   favoriteButton.id = 'favorite-button';
@@ -80,7 +88,8 @@ function displayCocktailShowPage(cocktail) {
   reviewForm.addEventListener('submit', (e) => saveReview(e, cocktail));
 
   // Append children to page
-  container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientsList, favoriteButton, reviewsHeader, reviewsContainer, reviewForm);
+  container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientsList, instructionsHeader,
+    instructionsParagraph, favoriteButton, reviewsHeader, reviewsContainer, reviewForm);
 }
 
 function updateCocktailEventListeners(cocktail) {
