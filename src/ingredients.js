@@ -9,6 +9,16 @@ function renderIngredients(cocktail, container) {
     const measure = cocktail.cocktailIngredients[i].measure;
     const name = cocktail.ingredients[i].name;
     ingredientListItem.innerText = `${measure} ${name}`;
+
+    if (parseInt(localStorage.getItem('user_id')) === cocktail.creator_id) {
+      const ingredientDeleteButton = document.createElement('button');
+      ingredientDeleteButton.classList.add('delete-button');
+      ingredientDeleteButton.innerText = 'Delete Ingredient';
+      ingredientDeleteButton.addEventListener('click', (e) => deleteCocktailIngredient(e, cocktail.cocktailIngredients[i]))
+
+      ingredientListItem.appendChild(ingredientDeleteButton);
+    }
+
     ingredientsList.appendChild(ingredientListItem);
   }
 
@@ -116,4 +126,14 @@ function renderNewIngredient(data) {
 
     ingredientsList.appendChild(ingredientListItem);
   }
+}
+
+function deleteCocktailIngredient(e, cocktailIngredient) {
+  const fetchObj = {
+    method: 'DELETE'
+  };
+
+  fetch(`${BASE_URL}/cocktail_ingredients/${cocktailIngredient.id}`, fetchObj)
+    .then(response => response.json())
+    .then(confirmation => confirmation ? e.target.parentElement.remove() : alert('Failed to delete ingredient'));
 }
