@@ -1,3 +1,19 @@
+function getShowInformation(cocktail) {
+  fetchObj = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      cocktail: cocktail
+    })
+  }
+
+  fetch(`${BASE_URL}/cocktails/get-show-info`, fetchObj)
+    .then(response => response.json())
+    .then(cocktail => displayCocktailShowPage(cocktail));
+}
+
 function displayCocktailShowPage(cocktail) {
   const container = document.querySelector('#detail');
   clearContainerContents(container);
