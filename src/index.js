@@ -121,58 +121,54 @@ function renderCocktailsTable(cocktails) {
 
     clearContainerContents(container);
 
-    const cocktailsTable = buildCocktailsTable(cocktails);
+    const cocktailCards = buildCocktailsCards(cocktails);
+    debugger;
 
-    if (cocktailsTable) {
-        container.appendChild(cocktailsTable);
+    if (cocktailCards) {
+        container.appendChild(cocktailCards);
     }
 }
 
-function buildCocktailsTable(cocktails) {
+function buildCocktailsCards(cocktails) {
     if (cocktails.length <= 0) {
         return;
     }
 
-    const table = document.createElement("table");
-    const tHead = document.createElement("thead");
-    const tHeadRow = document.createElement("tr");
+    const cocktailCardsContainer = document.createElement('div');
+    cocktailCardsContainer.classList.add('container');
 
-    const tHeadName = document.createElement("th");
-    tHeadName.innerText = "Name";
-
-    const tHeadImage = document.createElement("th");
-    tHeadImage.innerText = "Image";
-
-    const tBody = document.createElement("tbody");
+    const cocktailCardsRow = document.createElement('div');
+    cocktailCardsRow.classList.add('row');
 
     cocktails.forEach((cocktail) => {
-        const tDataRow = document.createElement("tr");
+        const cocktailCardColumn = document.createElement("div");
+        cocktailCardColumn.className = "col-sm-4";
 
-        const tDataName = document.createElement("td");
+        const cocktailCardDiv = document.createElement("div");
+        cocktailCardDiv.classList.add('card');
+        cocktailCardDiv.style = "width: 18rem; cursor: pointer";
+        cocktailCardDiv.addEventListener('click', () => getShowInformation(cocktail));
 
-        const tDataAnchor = document.createElement('a')
-        tDataAnchor.innerText = cocktail.name
-        tDataAnchor.href = 'javascript:'
-
-        tDataAnchor.addEventListener("click", function (e) {
-            getShowInformation(cocktail)
-        })
-
-        const tDataImage = document.createElement("td");
-        cocktailImage = document.createElement("img");
+        const cocktailImage = document.createElement("img");
         cocktailImage.src = cocktail.image;
-        cocktailImage.classList.add("table-image");
+        cocktailImage.classList.add('card-img-top')
 
-        tDataName.appendChild(tDataAnchor);
-        tDataImage.appendChild(cocktailImage);
-        tDataRow.append(tDataName, tDataImage);
-        tBody.appendChild(tDataRow);
+        const cocktailCardBody = document.createElement("div");
+        cocktailCardBody.className = "card-body";
+
+        const cocktailName = document.createElement("h5");
+        cocktailName.innerText = cocktail.name;
+        cocktailName.className = "card-title";
+
+        cocktailCardBody.appendChild(cocktailName);
+        cocktailCardDiv.appendChild(cocktailImage);
+        cocktailCardDiv.appendChild(cocktailCardBody);
+        cocktailCardColumn.appendChild(cocktailCardDiv);
+        cocktailCardsRow.appendChild(cocktailCardColumn);
     });
 
-    tHeadRow.append(tHeadName, tHeadImage);
-    tHead.appendChild(tHeadRow);
-    table.append(tHead, tBody);
+    cocktailCardsContainer.appendChild(cocktailCardsRow);
 
-    return table;
+    return cocktailCardsContainer;
 }
 
