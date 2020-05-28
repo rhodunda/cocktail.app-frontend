@@ -164,5 +164,6 @@ th {
 
 .card {
   margin-bottom: 75px;
+  margin-right: 75px;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.75), 0 6px 20px 0 rgba(0, 0, 0, 0.75);
 }

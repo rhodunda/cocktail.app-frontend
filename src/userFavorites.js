@@ -31,11 +31,15 @@ function userFavoritesFetch() {
 function createCards(data) {
   let detailsDiv = document.querySelector("#detail");
 
-  data.forEach((cocktail) => {
-    let cardRow = document.createElement("div");
-    cardRow.className = "row";
-    detailsDiv.appendChild(cardRow);
+  let containerDiv = document.createElement("div");
+  containerDiv.className = "container";
+  detailsDiv.appendChild(containerDiv);
 
+  let cardRow = document.createElement("div");
+  cardRow.className = "row";
+  containerDiv.appendChild(cardRow);
+
+  data.forEach((cocktail) => {
     let cardCol = document.createElement("div");
     cardCol.className = "col-sm-6";
     cardRow.appendChild(cardCol);
