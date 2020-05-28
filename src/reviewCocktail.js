@@ -34,7 +34,17 @@ function renderReview(container, review) {
 
       const reviewBreak = document.createElement('br');
 
-      reviewDiv.append(reviewUser, reviewRating, reviewContent, reviewBreak);
+      reviewDiv.append(reviewUser, reviewRating, reviewContent);
+
+      if (parseInt(localStorage.getItem('user_id')) === user.id) {
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('review-delete');
+        deleteButton.innerText = 'Delete Review';
+        deleteButton.addEventListener('click', (e) => deleteReview(e, review))
+
+        reviewDiv.appendChild(deleteButton);
+      }
+
       container.appendChild(reviewDiv);
     })
 }
@@ -76,4 +86,14 @@ function saveReview(e, cocktail) {
       updateCocktailEventListeners(data.cocktail);
       renderReview(reviewContainer, data.review)
     });
+}
+
+function deleteReview(e, review) {
+  const fetchObj = {
+    method: 'DELETE'
+  }
+
+  fetch(`${BASE_URL}/reviews/${review.id}`, fetchObj)
+    .then(response => response.json())
+    .then(confirmation => confirmation ? e.target.parentElement.remove() : alert('Could not destroy the review'));
 }
