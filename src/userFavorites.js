@@ -63,9 +63,15 @@ function createCards(data) {
     userFavoritesH5.className = "card-title";
     userFavoritesDiv.appendChild(userFavoritesH5);
 
-    let userFavoritesP = document.createElement("p");
-    userFavoritesP.innerText = "Ingredients Coming Soon!";
-    userFavoritesP.className = "card-text";
-    userFavoritesDiv.appendChild(userFavoritesP);
+    let userFavoritesUl = document.createElement("ul");
+    userFavoritesUl.className = "card-text";
+
+    cocktail.ingredients.forEach((ingredient) => {
+      let userFavoritesLi = document.createElement("li");
+      userFavoritesLi.innerText = ingredient.name;
+      userFavoritesUl.appendChild(userFavoritesLi);
+    });
+
+    userFavoritesDiv.appendChild(userFavoritesUl);
   });
 }
