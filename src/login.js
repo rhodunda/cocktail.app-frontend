@@ -66,7 +66,10 @@ function loginFetch(loginInfo) {
     .then((resp) => resp.json())
     .then((data) => {
       if (data.errors) data.errors.forEach((error) => alert(error));
-      else localStorage.setItem("user_id", `${data.id}`);
+      else {
+        localStorage.setItem("user_id", `${data.id}`);
+        window.alert("Welcome to Cocktail Picker");
+      }
     });
 }
 
@@ -92,6 +95,6 @@ function createLogOut() {
 
   finalLogoutBtn.addEventListener("click", function () {
     localStorage.removeItem("user_id");
-    window.alert("Logout");
+    window.alert("Goodbye");
   });
 }
