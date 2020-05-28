@@ -39,8 +39,7 @@ function creatingLogin() {
 
   let loginSubmit = document.createElement("input");
   loginSubmit.type = "submit";
-  loginSubmit.value = "login";
-  loginSubmit.innerText = "Login";
+  loginSubmit.value = "Login";
   loginForm.appendChild(loginSubmit);
 
   loginForm.addEventListener("submit", function (e) {
@@ -69,6 +68,7 @@ function loginFetch(loginInfo) {
       else {
         localStorage.setItem("user_id", `${data.id}`);
         window.alert("Welcome to Cocktail Picker");
+        clearContainerContents(document.querySelector('#detail'));
       }
     });
 }
@@ -96,5 +96,6 @@ function createLogOut() {
   finalLogoutBtn.addEventListener("click", function () {
     localStorage.removeItem("user_id");
     window.alert("Goodbye");
+    clearContainerContents(document.querySelector('#detail'));
   });
 }

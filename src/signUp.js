@@ -30,7 +30,7 @@ function createSignUpForm() {
   signUpForm.appendChild(signUpInput1);
 
   let signUpInput2 = document.createElement("input");
-  signUpInput2.type = "text";
+  signUpInput2.type = "password";
   signUpInput2.placeholder = "password";
   signUpInput2.name = "password";
   signUpInput2.autocomplete = "off";
@@ -47,6 +47,7 @@ function createSignUpForm() {
       email: e.target.email.value,
       password: e.target.password.value,
     };
+    e.preventDefault();
 
     creatingUser(newUser);
     signUpForm.reset();
@@ -62,8 +63,9 @@ function creatingUser(newUser) {
     body: JSON.stringify(newUser),
   })
     .then((resp) => resp.json())
-    .then((data) => {
-      localStorage.setItem("user_id", `${data.id}`);
+    .then((user) => {
+      localStorage.setItem("user_id", `${user.id}`);
       window.alert("Welcome to Cocktail Picker");
+      clearContainerContents(document.querySelector('#detail'));
     });
 }
