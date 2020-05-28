@@ -41,12 +41,12 @@ function createCards(data) {
 
   data.forEach((cocktail) => {
     let cardCol = document.createElement("div");
-    cardCol.className = "col-sm-6";
+    cardCol.className = "col-sm-4";
     cardRow.appendChild(cardCol);
 
     let cardDiv = document.createElement("div");
     cardDiv.className = "card";
-    cardDiv.style = "width: 18rem;";
+    cardDiv.style = "width: 18rem; cursor: pointer";
     cardDiv.addEventListener("click", function () {
       cocktailShowPage(cocktail);
     });
