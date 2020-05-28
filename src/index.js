@@ -150,13 +150,13 @@ function buildCocktailsTable(cocktails) {
 
     const tDataName = document.createElement("td");
 
-    const tDataAnchor = document.createElement("a");
-    tDataAnchor.innerText = cocktail.name;
-    tDataAnchor.href = "#";
+        const tDataAnchor = document.createElement('a')
+        tDataAnchor.innerText = cocktail.name
+        tDataAnchor.href = 'javascript:'
 
-    tDataAnchor.addEventListener("click", function (e) {
-      displayCocktailShowPage(e, cocktail);
-    });
+        tDataAnchor.addEventListener("click", function (e) {
+            displayCocktailShowPage(cocktail)
+        })
 
     const tDataImage = document.createElement("td");
     cocktailImage = document.createElement("img");
@@ -173,27 +173,6 @@ function buildCocktailsTable(cocktails) {
   tHead.appendChild(tHeadRow);
   table.append(tHead, tBody);
 
-  return table;
+    return table;
 }
 
-function renderIngredients(cocktail) {
-  ingredientList = document.createElement("ul");
-  cocktail.ingredients.forEach((ingredient) => {
-    ingredientListItem = document.createElement("li");
-    ingredientListItem.innerText = ingredient.name;
-    ingredientList.appendChild(ingredientListItem);
-  });
-
-  return ingredientList;
-}
-
-function displayCocktailShowPage(e, cocktail) {
-  const container = document.querySelector("#detail");
-  clearContainerContents(container);
-
-  // Name
-  // Picture
-  // Ingredients
-  // Favorite Button --- post fetch to fetches -> include cocktail information
-  // Review section --- post review to reviews -> include cocktail information. After post, create new review section
-}

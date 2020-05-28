@@ -1,4 +1,4 @@
-const modal = document.querySelector("#modal")
+const modal = document.querySelector("#new-cocktail-modal")
 document.querySelector("#make-cocktail-button").addEventListener("click", () => {
     modal.style.display = "block"
 })
