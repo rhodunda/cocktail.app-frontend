@@ -47,6 +47,9 @@ function createCards(data) {
     let cardDiv = document.createElement("div");
     cardDiv.className = "card";
     cardDiv.style = "width: 18rem;";
+    cardDiv.addEventListener("click", function () {
+      cocktailShowPage(cocktail);
+    });
     cardCol.appendChild(cardDiv);
 
     let userFavoritesImg = document.createElement("img");
@@ -74,4 +77,8 @@ function createCards(data) {
 
     userFavoritesDiv.appendChild(userFavoritesUl);
   });
+}
+
+function cocktailShowPage(cocktail) {
+  getShowInformation(cocktail);
 }
