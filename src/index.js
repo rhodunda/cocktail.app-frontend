@@ -134,14 +134,3 @@ function buildCocktailsTable(cocktails) {
 
     return table;
 }
-
-function renderIngredients(cocktail) {
-    ingredientList = document.createElement('ul');
-    cocktail.ingredients.forEach(ingredient => {
-        ingredientListItem = document.createElement('li');
-        ingredientListItem.innerText = ingredient.name;
-        ingredientList.appendChild(ingredientListItem);
-    });
-
-    return ingredientList;
-}
