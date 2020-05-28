@@ -95,5 +95,5 @@ function deleteReview(e, review) {
 
   fetch(`${BASE_URL}/reviews/${review.id}`, fetchObj)
     .then(response => response.json())
-    .then(confirmation => confirmation ? e.target.parentElement.remove() : alert('Could not destroy the review'));
+    .then(message => console.log(message));
 }

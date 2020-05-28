@@ -103,7 +103,7 @@
     display: inline-block;
   }
   /* modal */
-  #modal {
+  .modal {
     position: fixed;
     z-index: 1;
     top: 0;
@@ -112,7 +112,7 @@
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.75);
   }
-  #new-cocktail-form {
+  .modal-form {
     background-color: rgb(255, 237, 194);
     margin-top: 20vh;
     width: 600px;

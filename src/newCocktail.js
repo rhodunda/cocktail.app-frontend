@@ -1,13 +1,14 @@
 function newCocktail() {
   const newCocktailForm = document.querySelector("#new-cocktail-form");
-  const modal = document.querySelector('#modal');
+  const modal = document.querySelector('#new-cocktail-modal');
 
   newCocktailForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     formSubmit = {
       name: e.target.name.value,
-      image: e.target.image.value
+      image: e.target.image.value,
+      creator_id: localStorage.getItem('user_id')
     };
 
     newCocktailFetch(formSubmit);

@@ -15,14 +15,11 @@ function displayCocktailShowPage(cocktail) {
   const ingredientsHeader = document.createElement('h2');
   ingredientsHeader.innerText = 'Ingredients';
 
-  const ingredientList = document.createElement('ul');
-  for (let i = 0; i < cocktail.ingredients.length; i++) {
-    const ingredientListItem = document.createElement('li');
-    const measure = cocktail.cocktailIngredients[i].measure;
-    const name = cocktail.ingredients[i].name;
-    ingredientListItem.innerText = `${measure} ${name}`;
-    ingredientList.appendChild(ingredientListItem);
-  }
+  const ingredientsContainer = document.createElement('div');
+  ingredientsContainer.id = 'ingredients-container';
+  const ingredientsList = renderIngredients(cocktail, ingredientsContainer);
+
+  setupNewIngredientForm(cocktail);
 
   // Favorite Button --- post fetch to fetches -> include cocktail information
   const favoriteButton = document.createElement('button');
@@ -67,7 +64,7 @@ function displayCocktailShowPage(cocktail) {
   reviewForm.addEventListener('submit', (e) => saveReview(e, cocktail));
 
   // Append children to page
-  container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientList, favoriteButton, reviewsHeader, reviewsContainer, reviewForm);
+  container.append(cocktailHeader, cocktailImage, ingredientsHeader, ingredientsList, favoriteButton, reviewsHeader, reviewsContainer, reviewForm);
 }
 
 function updateCocktailEventListeners(cocktail) {

@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script defer src="src/modal.js"></script>
+  <script defer src="src/cocktailModal.js"></script>
   <script defer src="src/index.js"></script>
   <script defer src="src/signUp.js"></script>
   <script defer src="src/login.js"></script>
@@ -13,7 +13,7 @@
   <script defer src="src/showCocktail.js"></script>
   <script defer src="src/favoriteCocktail.js"></script>
   <script defer src="src/reviewCocktail.js"></script>
-  <!-- <script defer src="newCocktail.js"></script> -->
+  <script defer src="src/ingredients.js"></script>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Lato&display=swap" rel="stylesheet">
   <title>cocktail Picker</title>
@@ -64,8 +64,8 @@
       </div>
     </section>
   </main>
-  <div id="modal" style="display: none;" data-action="close">
-    <form id="new-cocktail-form">
+  <div id="new-cocktail-modal" class="modal" style="display: none;" data-action="close">
+    <form id="new-cocktail-form" class="modal-form">
       <h1>Create New Cocktail</h1>
       <label for="name">Name</label>
       <input type="text" name="name">
@@ -73,6 +73,9 @@
       <input type="text" name="image">
       <input type="submit" value="Create Cocktail">
     </form>
+  </div>
+  <div id="new-ingredient-modal" class="modal" style="display: none;" data-action="close">
+
   </div>
 </body>
 
