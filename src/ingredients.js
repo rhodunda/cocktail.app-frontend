@@ -103,12 +103,12 @@ function saveIngredient(e, cocktail) {
     })
   }
 
-  e.target.reset();
-
   if (!e.target.name.value) {
     alert('You  must include a name for the ingredient')
     return;
   }
+
+  e.target.reset();
 
   fetch(`${BASE_URL}/cocktails/${cocktail.id}/add-ingredient`, fetchObj)
     .then(response => response.json())
@@ -123,6 +123,13 @@ function renderNewIngredient(data) {
 
     const ingredientListItem = document.createElement('li');
     ingredientListItem.innerText = `${data.cocktailIngredient.measure} ${data.ingredient.name}`
+
+    const ingredientDeleteButton = document.createElement('button');
+    ingredientDeleteButton.classList.add('delete-button');
+    ingredientDeleteButton.innerText = 'Delete Ingredient';
+    ingredientDeleteButton.addEventListener('click', (e) => deleteCocktailIngredient(e, data.cocktailIngredient))
+
+    ingredientListItem.appendChild(ingredientDeleteButton);
 
     ingredientsList.appendChild(ingredientListItem);
   }
