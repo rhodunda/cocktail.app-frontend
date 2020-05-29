@@ -186,3 +186,84 @@ th {
 .card:hover {
   color: blue;
 }
+
+.show-cocktail-main-div {
+  text-align: center;
+  background-color: rgb(255, 255, 220);
+  border-radius: 15px;
+}
+
+.cocktail-image {
+  border-radius: 20%;
+  margin-bottom: 15px;
+}
+.ingredientsContainer {
+  text-align: center;
+  border-bottom: solid;
+  border-color: #fae8b9;
+  border-width: 20px;
+  margin-bottom: 35px;
+}
+
+#cocktail-instructions {
+  margin-bottom: 50px;
+}
+
+#favorite-button {
+  background-color: rgb(255, 215, 0);
+  color: black;
+  font-size: 20px;
+  border-radius: 15px;
+  border: 2px black;
+  margin-bottom: 35px;
+  transition-duration: 0.4s;
+}
+
+#favorite-button:hover {
+  background-color: #66ccff;
+  color: black;
+}
+
+.review-headers {
+  border-top: solid;
+  border-color: #fae8b9;
+  border-width: 20px;
+  margin-bottom: 35px;
+  margin-top: 50px;
+}
+
+#review-form input[type="submit"] {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#review-form textarea[type="text"] {
+  background-color: #3cbc8d;
+  color: white;
+}
+
+.rating-drop-down {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 50px;
+}
+
+.rating-drop-down-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.rating-drop-down:hover .rating-drop-down-content {
+  display: block;
+}
