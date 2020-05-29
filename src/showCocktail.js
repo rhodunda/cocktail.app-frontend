@@ -34,6 +34,7 @@ function displayCocktailShowPage(cocktail) {
 
   // Ingredients
   const ingredientsHeader = document.createElement("h2");
+  ingredientsHeader.id = 'ingredients-header'
   ingredientsHeader.innerText = "Ingredients";
 
   const ingredientsContainer = document.createElement("div");
@@ -70,6 +71,13 @@ function displayCocktailShowPage(cocktail) {
 
   renderReviews(reviewsContainer, cocktail);
 
+  const reviewFormContainer = document.createElement('div');
+  reviewFormContainer.id = 'review-form-container';
+
+  const reviewFormHeader = document.createElement('h2');
+  reviewFormHeader.id = 'review-form-header';
+  reviewFormHeader.innerText = 'Write a Review';
+
   const reviewForm = document.createElement("form");
   reviewForm.id = "review-form";
 
@@ -89,6 +97,7 @@ function displayCocktailShowPage(cocktail) {
   reviewRatingSpan.appendChild(reviewRatingSelect);
 
   const reviewTextArea = document.createElement("textarea");
+  reviewTextArea.id = 'review-text-area'
   reviewTextArea.name = "reviewContent";
   reviewTextArea.placeholder = "Write Review Here";
 
@@ -97,6 +106,7 @@ function displayCocktailShowPage(cocktail) {
 
   reviewForm.append(reviewRatingSpan, reviewTextArea, reviewSubmitButton);
   reviewForm.addEventListener("submit", (e) => saveReview(e, cocktail));
+  reviewFormContainer.append(reviewFormHeader, reviewForm);
 
   // Append children to page
   background.append(
@@ -109,12 +119,13 @@ function displayCocktailShowPage(cocktail) {
     favoriteButton,
     reviewsHeader,
     reviewsContainer,
-    reviewForm
+    reviewFormContainer
   );
 
   if (parseInt(localStorage.getItem("user_id")) === cocktail.creator_id) {
     // Update Cocktail Button
     const updateCocktailButton = document.createElement("button");
+    updateCocktailButton.id = 'update-cocktail-button'
     updateCocktailButton.innerText = "Update Cocktail";
     updateCocktailButton.addEventListener("click", () =>
       updateCocktail(cocktail)
@@ -128,6 +139,7 @@ function displayCocktailShowPage(cocktail) {
     // Delete Cocktail Button
     const deleteCocktailButton = document.createElement('button');
     deleteCocktailButton.innerText = 'Delete Cocktail';
+    deleteCocktailButton.id = 'delete-cocktail-button'
     deleteCocktailButton.classList.add('delete-button');
     deleteCocktailButton.addEventListener('click', () =>
       deleteCocktail(cocktail)

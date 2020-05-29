@@ -158,6 +158,10 @@ th {
   padding: 5px;
 }
 
+#cocktail-header {
+  padding-top: 20px;
+}
+
 #cocktails-search-form input {
   border: thin solid black;
 }
@@ -190,25 +194,47 @@ th {
 
 .cocktail-image {
   border-radius: 20%;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
-.ingredientsContainer {
+
+#update-cocktail-button {
+  margin-bottom: 20px;
+}
+
+#ingredients-header {
+  padding-top: 20px;
+  margin-bottom: 0px;
+  border-top: solid;
+  border-color: #fae8b9;
+  border-width: 20px;
+}
+
+#ingredients-container {
+  padding-bottom: 20px;
+}
+
+#ingredient-table {
+  margin: 0 auto;
+}
+
+#ingredient-table > tbody, tr, td {
+  border: none;
+}
+
+#cocktail-instructions {
   text-align: center;
   border-bottom: solid;
   border-color: #fae8b9;
   border-width: 20px;
   margin-bottom: 30px;
-}
-
-#cocktail-instructions {
-  margin-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 #favorite-button {
   font-size: 20px;
-  border-radius: 15px;
+  border-radius: 10px;
   border: 2px black;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
   transition-duration: 0.4s;
 }
 
@@ -227,34 +253,63 @@ th {
   color: black;
 }
 
-.review-headers {
-  border-top: solid;
-  border-color: #fae8b9;
-  border-width: 20px;
-  margin-bottom: 35px;
-  margin-top: 50px;
+.review-container {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  background: #f5f2da;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.review-container > h3 {
+  font-size: 16pt;
+}
+
+#review-form-container {
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  background: #a8e1e3;
+}
+
+#review-form-header {
+  padding-top: 10px;
 }
 
 #review-form input[type="submit"] {
+  display: inline-block;
   background-color: #4caf50;
   border: none;
   color: white;
-  padding: 16px 32px;
+  padding: 5px 32px;
   text-decoration: none;
-  margin: 4px 2px;
   cursor: pointer;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  border-radius: 5px;
 }
 
-#review-form textarea[type="text"] {
-  background-color: #3cbc8d;
-  color: white;
+#review-text-area {
+  background-color: #cffdff;
+  display: block;
 }
 
 .rating-drop-down {
   position: relative;
   display: inline-block;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+  background: #cffdff;
+  border: 1px solid #82dde0;
+  border-radius: 5px;
 }
 
 .rating-drop-down-content {
@@ -278,10 +333,12 @@ th {
   margin-bottom: 5px;
 }
 
-#ingredient-table {
-  margin: 0 auto;
+#delete-cocktail-button {
+  margin-bottom: 30px;
+  padding: 5px 10px 5px 10px;
 }
 
-#ingredient-table > tbody, tr, td {
+button {
   border: none;
+  border-radius: 5px;
 }
