@@ -49,7 +49,7 @@ function createCards(cocktails) {
 
     let cardDiv = document.createElement("div");
     cardDiv.className = "card";
-    cardDiv.style = "width: 18rem; cursor: pointer";
+    cardDiv.style = "width: 15rem; cursor: pointer";
     cardDiv.addEventListener("click", function () {
       cocktailShowPage(cocktail);
     });

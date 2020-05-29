@@ -147,7 +147,7 @@ function buildCocktailsCards(cocktails) {
 
     const cocktailCardDiv = document.createElement("div");
     cocktailCardDiv.classList.add("card");
-    cocktailCardDiv.style = "width: 18rem; cursor: pointer";
+    cocktailCardDiv.style = "width: 15rem; cursor: pointer";
     cocktailCardDiv.addEventListener("click", () =>
       getShowInformation(cocktail)
     );
