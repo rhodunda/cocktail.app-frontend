@@ -12,7 +12,15 @@ function colorIfFavorite(button, cocktail) {
 
   fetch(`${BASE_URL}/cocktails/is-favorite`, fetchObj)
     .then(response => response.json())
-    .then(isFavorite => isFavorite ? button.classList.add('is-favorite') : button.classList.remove('is-favorite'));
+    .then(isFavorite => {
+      if (isFavorite) {
+        button.classList.add('is-favorite');
+        button.classList.remove('is-not-favorite');
+      } else {
+        button.classList.add('is-not-favorite');
+        button.classList.remove('is-favorite');
+      }
+    });
 }
 
 function favoriteCocktail(e, cocktail) {
