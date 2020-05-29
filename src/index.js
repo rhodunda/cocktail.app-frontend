@@ -131,7 +131,7 @@ function renderCocktailsTable(cocktails) {
 
 function buildCocktailsCards(cocktails) {
   if (cocktails.length <= 0) {
-    alert(`We ain't go nunna dat`)
+    alert(`Looks like there's no cocktails here`)
     return;
   }
 
