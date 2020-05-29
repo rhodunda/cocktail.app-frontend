@@ -270,3 +270,18 @@ th {
 .rating-drop-down:hover .rating-drop-down-content {
   display: block;
 }
+
+#search-option {
+  border: 1px solid grey;
+  padding: 2px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+#ingredient-table {
+  margin: 0 auto;
+}
+
+#ingredient-table > tbody, tr, td {
+  border: none;
+}
