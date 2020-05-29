@@ -109,3 +109,17 @@ function renderUpdatedCocktail(cocktail) {
     cocktailInstructions.innerText = cocktail.instructions;
   }
 }
+
+function deleteCocktail(cocktail) {
+  if (!confirm('Are you sure you want to delete this cocktail?')) {
+    return;
+  }
+
+  const fetchObj = {
+    method: 'DELETE'
+  }
+
+  fetch(`${BASE_URL}/cocktails/${cocktail.id}`, fetchObj)
+    .then(response => response.json())
+    .then(confirmation => confirmation ? clearContainerContents(document.querySelector('#detail')) : alert('Failed to delete cocktail'))
+}
