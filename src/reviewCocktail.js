@@ -22,6 +22,7 @@ function renderReview(container, review) {
     .then(user => {
 
       const reviewDiv = document.createElement('div');
+      reviewDiv.classList.add('review-container')
 
       const reviewUser = document.createElement('h3');
       reviewUser.innerText = `User: ${user.email}`;
@@ -31,8 +32,6 @@ function renderReview(container, review) {
 
       const reviewContent = document.createElement('p');
       reviewContent.innerText = review.content;
-
-      const reviewBreak = document.createElement('br');
 
       reviewDiv.append(reviewUser, reviewRating, reviewContent);
 
