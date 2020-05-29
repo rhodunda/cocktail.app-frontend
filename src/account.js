@@ -21,7 +21,12 @@ function creatingAccountInfo() {
   accountDeleteBtn.innerText = "DELETE ACCOUNT";
   detailsDiv.appendChild(accountDeleteBtn);
   accountDeleteBtn.addEventListener("click", function () {
-    deleteFetch();
+    if (localStorage.getItem("user_id") === null) {
+      window.alert("No User Signed in");
+      login();
+    } else {
+      deleteFetch();
+    }
   });
 }
 
