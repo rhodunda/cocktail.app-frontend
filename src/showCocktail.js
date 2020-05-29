@@ -18,7 +18,9 @@ function displayCocktailShowPage(cocktail) {
   const container = document.querySelector("#detail");
   clearContainerContents(container);
 
-  container.className = "show-cocktail-main-div";
+  let background = document.createElement("div");
+  background.className = "show-cocktail-main-div";
+  container.appendChild(background);
 
   // Name
   const cocktailHeader = document.createElement("h1");
@@ -75,9 +77,11 @@ function displayCocktailShowPage(cocktail) {
   reviewRatingSpan.innerText = "Rating: ";
 
   const reviewRatingSelect = document.createElement("select");
+  reviewRatingSelect.className = "rating-drop-down";
   reviewRatingSelect.name = "reviewRating";
   for (let i = 0; i <= 10; i++) {
     const reviewRatingOption = document.createElement("option");
+    reviewRatingOption.className = "rating-drop-down-content";
     reviewRatingOption.value = i;
     reviewRatingOption.innerText = i;
     reviewRatingSelect.appendChild(reviewRatingOption);
@@ -95,7 +99,7 @@ function displayCocktailShowPage(cocktail) {
   reviewForm.addEventListener("submit", (e) => saveReview(e, cocktail));
 
   // Append children to page
-  container.append(
+  background.append(
     cocktailHeader,
     cocktailImage,
     ingredientsHeader,
@@ -118,8 +122,8 @@ function displayCocktailShowPage(cocktail) {
 
     setupUpdateCocktailForm(cocktail);
 
-    container.insertBefore(document.createElement("br"), ingredientsHeader);
-    container.insertBefore(updateCocktailButton, ingredientsHeader);
+    background.insertBefore(document.createElement("br"), ingredientsHeader);
+    background.insertBefore(updateCocktailButton, ingredientsHeader);
   }
 }
 
