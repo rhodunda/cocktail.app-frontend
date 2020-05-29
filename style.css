@@ -90,6 +90,13 @@ section {
   padding: 2rem;
   background-color: rgb(255, 237, 194);
 }
+
+#search-button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}
+
 #detail {
   max-width: 80%;
 }
