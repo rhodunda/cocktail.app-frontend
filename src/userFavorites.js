@@ -7,8 +7,6 @@ function favoritesListener() {
   favoriteBtn.addEventListener("click", function () {
     let detailsDiv = document.querySelector("#detail");
     detailsDiv.innerHTML = "";
-
-    console.log("click");
     userFavoritesFetch();
   });
 }
@@ -19,16 +17,21 @@ function userFavoritesFetch() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(parseInt(localStorage.getItem("user_id"))),
+    body: JSON.stringify({
+      id: parseInt(localStorage.getItem("user_id"))
+    }),
   })
     .then((resp) => resp.json())
-    .then((data) => {
-      console.log(data);
-      createCards(data);
+    .then(cocktails => {
+      if (cocktails.length > 0) {
+        createCards(cocktails);
+      } else {
+        alert(`Looks like you don't have any favorites`);
+      }
     });
 }
 
-function createCards(data) {
+function createCards(cocktails) {
   let detailsDiv = document.querySelector("#detail");
 
   let containerDiv = document.createElement("div");
@@ -39,7 +42,7 @@ function createCards(data) {
   cardRow.className = "row";
   containerDiv.appendChild(cardRow);
 
-  data.forEach((cocktail) => {
+  cocktails.forEach((cocktail) => {
     let cardCol = document.createElement("div");
     cardCol.className = "col-sm-4";
     cardRow.appendChild(cardCol);
