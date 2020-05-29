@@ -6,7 +6,7 @@ function renderIngredients(cocktail, container) {
 
   for (let i = 0; i < cocktail.ingredients.length; i++) {
     const ingredientListItem = document.createElement('li');
-    const measure = cocktail.cocktailIngredients[i].measure;
+    const measure = cocktail.cocktailIngredients.find(ci => ci.ingredient_id === cocktail.ingredients[i].id).measure;
     const name = cocktail.ingredients[i].name;
     ingredientListItem.innerText = `${measure} ${name}`;
 
@@ -14,7 +14,7 @@ function renderIngredients(cocktail, container) {
       const ingredientDeleteButton = document.createElement('button');
       ingredientDeleteButton.classList.add('delete-button');
       ingredientDeleteButton.innerText = 'Delete Ingredient';
-      ingredientDeleteButton.addEventListener('click', (e) => deleteCocktailIngredient(e, cocktail.cocktailIngredients[i]))
+      ingredientDeleteButton.addEventListener('click', (e) => deleteCocktailIngredient(e, cocktail.cocktailIngredients.find(ci => ci.ingredient_id === cocktail.ingredients[i].id)))
 
       ingredientListItem.appendChild(ingredientDeleteButton);
     }
