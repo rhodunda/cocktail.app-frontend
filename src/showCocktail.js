@@ -112,8 +112,8 @@ function displayCocktailShowPage(cocktail) {
     reviewForm
   );
 
-  // Update Cocktail Button
   if (parseInt(localStorage.getItem("user_id")) === cocktail.creator_id) {
+    // Update Cocktail Button
     const updateCocktailButton = document.createElement("button");
     updateCocktailButton.innerText = "Update Cocktail";
     updateCocktailButton.addEventListener("click", () =>
@@ -124,6 +124,17 @@ function displayCocktailShowPage(cocktail) {
 
     background.insertBefore(document.createElement("br"), ingredientsHeader);
     background.insertBefore(updateCocktailButton, ingredientsHeader);
+
+    // Delete Cocktail Button
+    const deleteCocktailButton = document.createElement('button');
+    deleteCocktailButton.innerText = 'Delete Cocktail';
+    deleteCocktailButton.classList.add('delete-button');
+    deleteCocktailButton.addEventListener('click', () =>
+      deleteCocktail(cocktail)
+    );
+
+    background.appendChild(document.createElement('br'));
+    background.appendChild(deleteCocktailButton);
   }
 }
 
