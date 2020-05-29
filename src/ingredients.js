@@ -1,28 +1,38 @@
 function renderIngredients(cocktail, container) {
   clearContainerContents(container);
 
-  const ingredientsList = document.createElement('ul');
-  ingredientsList.id = 'ingredients-list'
+  const ingredientTable = document.createElement('table');
+  ingredientTable.id = 'ingredient-table'
+
+  const ingredientTableBody = document.createElement('tbody');
+  ingredientTableBody.id = 'ingredients-table-body'
 
   for (let i = 0; i < cocktail.ingredients.length; i++) {
-    const ingredientListItem = document.createElement('li');
+    const ingredientTableRow = document.createElement('tr');
+
+    const ingredientInfoTd = document.createElement('td');
     const measure = cocktail.cocktailIngredients.find(ci => ci.ingredient_id === cocktail.ingredients[i].id).measure;
     const name = cocktail.ingredients[i].name;
-    ingredientListItem.innerText = `${measure} ${name}`;
+    ingredientInfoTd.innerText = `${measure} ${name}`;
+    ingredientTableRow.appendChild(ingredientInfoTd);
 
     if (parseInt(localStorage.getItem('user_id')) === cocktail.creator_id) {
+      const ingredientDeleteTd = document.createElement('td');
+
       const ingredientDeleteButton = document.createElement('button');
       ingredientDeleteButton.classList.add('delete-button');
       ingredientDeleteButton.innerText = 'Delete Ingredient';
       ingredientDeleteButton.addEventListener('click', (e) => deleteCocktailIngredient(e, cocktail.cocktailIngredients.find(ci => ci.ingredient_id === cocktail.ingredients[i].id)))
 
-      ingredientListItem.appendChild(ingredientDeleteButton);
+      ingredientDeleteTd.appendChild(ingredientDeleteButton);
+      ingredientTableRow.appendChild(ingredientDeleteTd);
     }
 
-    ingredientsList.appendChild(ingredientListItem);
+    ingredientTableBody.appendChild(ingredientTableRow);
   }
 
-  container.appendChild(ingredientsList);
+  ingredientTable.appendChild(ingredientTableBody);
+  container.appendChild(ingredientTable);
 
   if (parseInt(localStorage.getItem('user_id')) === cocktail.creator_id) {
     const addIngredientButton = document.createElement('button');
@@ -119,19 +129,24 @@ function renderNewIngredient(data) {
   if (data.error) {
     alert(data.error)
   } else {
-    const ingredientsList = document.querySelector('#ingredients-list');
+    const ingredientsTableBody = document.querySelector('#ingredients-table-body');
 
-    const ingredientListItem = document.createElement('li');
-    ingredientListItem.innerText = `${data.cocktailIngredient.measure} ${data.ingredient.name}`
+    const ingredientTableRow = document.createElement('tr');
+
+    const ingredientInfoTd = document.createElement('td');
+    ingredientInfoTd.innerText = `${data.cocktailIngredient.measure} ${data.ingredient.name}`
+
+    const ingredientDeleteTd = document.createElement('td');
 
     const ingredientDeleteButton = document.createElement('button');
     ingredientDeleteButton.classList.add('delete-button');
     ingredientDeleteButton.innerText = 'Delete Ingredient';
     ingredientDeleteButton.addEventListener('click', (e) => deleteCocktailIngredient(e, data.cocktailIngredient))
 
-    ingredientListItem.appendChild(ingredientDeleteButton);
+    ingredientDeleteTd.appendChild(ingredientDeleteButton);
+    ingredientTableRow.append(ingredientInfoTd, ingredientDeleteTd);
 
-    ingredientsList.appendChild(ingredientListItem);
+    ingredientsTableBody.appendChild(ingredientTableRow);
   }
 }
 
@@ -142,5 +157,5 @@ function deleteCocktailIngredient(e, cocktailIngredient) {
 
   fetch(`${BASE_URL}/cocktail_ingredients/${cocktailIngredient.id}`, fetchObj)
     .then(response => response.json())
-    .then(confirmation => confirmation ? e.target.parentElement.remove() : alert('Failed to delete ingredient'));
+    .then(confirmation => confirmation ? e.target.parentElement.parentElement.remove() : alert('Failed to delete ingredient'));
 }
