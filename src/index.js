@@ -50,6 +50,7 @@ function init() {
   displayCocktailSelector();
   newCocktail();
   displayUserFavorites();
+  account();
 }
 
 function setupSearchForm() {
