@@ -167,11 +167,6 @@ th {
   height: auto;
 }
 
-.is-favorite {
-  background-color: green;
-  color: white;
-}
-
 .delete-button {
   background-color: red;
   color: white;
@@ -202,7 +197,7 @@ th {
   border-bottom: solid;
   border-color: #fae8b9;
   border-width: 20px;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 }
 
 #cocktail-instructions {
@@ -210,13 +205,21 @@ th {
 }
 
 #favorite-button {
-  background-color: rgb(255, 215, 0);
-  color: black;
   font-size: 20px;
   border-radius: 15px;
   border: 2px black;
   margin-bottom: 35px;
   transition-duration: 0.4s;
+}
+
+.is-favorite {
+  background-color: green;
+  color: white;
+}
+
+.is-not-favorite {
+  background-color: rgb(255, 215, 0);
+  color: black;
 }
 
 #favorite-button:hover {
