@@ -1,100 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script defer src="src/cocktailModal.js"></script>
+    <script defer src="src/index.js"></script>
+    <script defer src="src/signUp.js"></script>
+    <script defer src="src/login.js"></script>
+    <script defer src="src/newCocktail.js"></script>
+    <script defer src="src/userFavorites.js"></script>
+    <script defer src="src/showCocktail.js"></script>
+    <script defer src="src/favoriteCocktail.js"></script>
+    <script defer src="src/reviewCocktail.js"></script>
+    <script defer src="src/ingredients.js"></script>
+    <script defer src="src/updateCocktail.js"></script>
+    <script defer src="src/account.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Josefin+Sans|Lato&display=swap"
+      rel="stylesheet"
+    />
+    <title>cocktail Picker</title>
+  </head>
 
-<head>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script defer src="src/cocktailModal.js"></script>
-  <script defer src="src/index.js"></script>
-  <script defer src="src/signUp.js"></script>
-  <script defer src="src/login.js"></script>
-  <script defer src="src/newCocktail.js"></script>
-  <script defer src="src/userFavorites.js"></script>
-  <script defer src="src/showCocktail.js"></script>
-  <script defer src="src/favoriteCocktail.js"></script>
-  <script defer src="src/reviewCocktail.js"></script>
-  <script defer src="src/ingredients.js"></script>
-  <script defer src="src/updateCocktail.js"></script>
-
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Lato&display=swap" rel="stylesheet">
-  <title>cocktail Picker</title>
-</head>
-
-<body>
-  <main>
-    <aside>
-      <h1>Cocktail Picker</h1>
-      <h2>Cocktails</h2>
-      <div>
-        <div id="cocktails-search">
-          <p>Search: </p>
-          <form id="cocktails-search-form">
-            <select name="search-option" id="search-option">
-              <option value="name">Name</option>
-              <option value="ingredient">Ingredient</option>
-            </select>
-            <input id="search-form-input" type="text" name="name">
-            <input type="submit" value="Search">
-          </form>
+  <body>
+    <main>
+      <aside>
+        <h1>Cocktail Picker</h1>
+        <h2>Cocktails</h2>
+        <div>
+          <div id="cocktails-search">
+            <p>Search:</p>
+            <form id="cocktails-search-form">
+              <select name="search-option" id="search-option">
+                <option value="name">Name</option>
+                <option value="ingredient">Ingredient</option>
+              </select>
+              <input id="search-form-input" type="text" name="name" />
+              <input type="submit" value="Search" />
+            </form>
+          </div>
+          <div id="cocktails-selector"></div>
         </div>
-        <div id="cocktails-selector"></div>
-      </div>
-      <h2>Actions</h2>
-      <!-- User Actions go Here-->
-      <ul id="actions-container" class="side-list">
-        <li class="item" id="make-cocktail-button" data-action="new">
-          Make New cocktail
-        </li>
-        <li class="item" id="favorite-cocktail-button" data-action="favorite">
-          Favorites
-        </li>
-        <li class="item" id="login">
-          Login
-        </li>
-        <li class="item" id="logout">
-          Logout
-        <li class="item" id="sign-up">
-          Sign Up
-        </li>
-        </li>
-      </ul>
-    </aside>
-    <section>
-      <div id="detail">
-        <!-- display info there Details Here-->
-      </div>
-    </section>
-  </main>
-  <div id="new-cocktail-modal" class="modal" style="display: none;" data-action="close">
-    <form id="new-cocktail-form" class="modal-form">
-      <h1>Create New Cocktail</h1>
-      <label for="name">Name</label>
-      <input type="text" name="name">
-      <label for="image_url">Image URL</label>
-      <input type="text" name="image">
-      <label for="instructions">Instructions</label>
-      <input type="textarea" name="instructions">
-      <input type="submit" value="Create Cocktail">
-    </form>
-  </div>
-  <div id="new-ingredient-modal" class="modal" style="display: none;" data-action="close"></div>
-  <div id="update-cocktail-modal" class="modal" style="display: none;" data-action="close"></div>
+        <h2>Actions</h2>
+        <!-- User Actions go Here-->
+        <ul id="actions-container" class="side-list">
+          <li class="item" id="make-cocktail-button" data-action="new">
+            Make New cocktail
+          </li>
+          <li class="item" id="favorite-cocktail-button" data-action="favorite">
+            Favorites
+          </li>
+          <li class="item" id="login">
+            Login
+          </li>
+          <li class="item" id="logout">
+            Logout
+          </li>
 
+          <li class="item" id="sign-up">
+            Sign Up
+          </li>
+          <li class="item" id="account">
+            Account
+          </li>
+        </ul>
+      </aside>
+      <section>
+        <div id="detail">
+          <!-- display info there Details Here-->
+        </div>
+      </section>
+    </main>
+    <div
+      id="new-cocktail-modal"
+      class="modal"
+      style="display: none;"
+      data-action="close"
+    >
+      <form id="new-cocktail-form" class="modal-form">
+        <h1>Create New Cocktail</h1>
+        <label for="name">Name</label>
+        <input type="text" name="name" />
+        <label for="image_url">Image URL</label>
+        <input type="text" name="image" />
+        <label for="instructions">Instructions</label>
+        <input type="textarea" name="instructions" />
+        <input type="submit" value="Create Cocktail" />
+      </form>
+    </div>
+    <div
+      id="new-ingredient-modal"
+      class="modal"
+      style="display: none;"
+      data-action="close"
+    ></div>
+    <div
+      id="update-cocktail-modal"
+      class="modal"
+      style="display: none;"
+      data-action="close"
+    ></div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-    crossorigin="anonymous"></script>
-
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
