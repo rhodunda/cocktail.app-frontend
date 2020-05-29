@@ -130,6 +130,7 @@ function renderCocktailsTable(cocktails) {
 
 function buildCocktailsCards(cocktails) {
   if (cocktails.length <= 0) {
+    alert(`We ain't go nunna dat`)
     return;
   }
 
